@@ -1,5 +1,5 @@
 import org.junit.After;
-
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -12,28 +12,31 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 
-public class InsuranceTest {
+public class Task_1_SberbankInsurance {
+
 
     WebDriver driver;
     String baseUrl;
-
-
 
     @Before
     public void beforeTest(){
         System.setProperty("webdriver.chrome.driver", "drv/chromedriver.exe");
         driver = new ChromeDriver();
-        baseUrl = "https://www.rgs.ru/";
+        baseUrl = "http://www.sberbank.ru/ru/person";
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get(baseUrl);
     }
 
     @Test
-        public void testInsurance(){
+    public void testInsurance(){
         System.setProperty("webdriver.chrome.driver", "drv/chromedriver.exe");
-        driver.findElement(By.xpath("/html/body/div[2]/div/div[2]/ol[1]/li/a")).click();
-        driver.findElement(By.xpath("//*[contains(text(),'ДМС')]")).click();
+        driver.findElement(By.xpath("/html/body/div[1]/div[1]/div/div/div[5]/div[1]/div[2]/div/div[1]/ul/li[6]/button/span")).click();
+        driver.findElement(By.xpath("/html/body/div[1]/div[1]/div/div/div[5]/div[1]/div[2]/div/div[1]/ul/li[6]/div/div/div/div[1]/ul/li[2]/a")).click();
+//Проверить наличие на странице заголовка – Страхование путешественников
+        assertEquals("Страхование путешественников",
+                driver.findElement(By.name("LastName")).getAttribute("value"));
+
 
         Wait<WebDriver> wait = new WebDriverWait(driver, 5, 1000);
         WebElement sendBtn = driver.findElement(By.xpath("/html/body/div[6]/div/div/div/div/a[3]"));
@@ -74,10 +77,10 @@ public class InsuranceTest {
     }
 
 
-        public void fillInField (By locator, String value){
+    public void fillInField (By locator, String value){
         driver.findElement(locator).clear();
         driver.findElement(locator).sendKeys(value);
-        }
+    }
 
 
 
