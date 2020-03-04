@@ -46,10 +46,6 @@ public class Task_1_SberbankInsurance {
         WebElement sendBtn = driver.findElement(By.xpath("(//H2[@class='kit-heading kit-heading_l product-teaser-full-width__header'][text()='Страхование путешественников'][text()='Страхование путешественников'])[2]"));
         wait.until(ExpectedConditions.visibilityOf(sendBtn)).click();
 
-
-
-
-
         driver.findElement(By.xpath("//B[@class='kit-button__text'][text()='Оформить онлайн']")).click();
 
 
@@ -66,7 +62,7 @@ public class Task_1_SberbankInsurance {
 
         WebElement titlePreparation = driver.findElement(By.xpath("(//DIV[@_ngcontent-c4=''])[6]"));
         wait.until(ExpectedConditions.visibilityOf(titlePreparation));
-        //assertEquals("Заявка на добровольное медицинское страхование", titlePreparation.getText());
+
 
         fillInField(By.id("surname_vzr_ins_0"), "Ivan");
         fillInField(By.id("name_vzr_ins_0"), "Ivan");
@@ -85,12 +81,6 @@ public class Task_1_SberbankInsurance {
         driver.findElement(By.id("documentIssue")).sendKeys("Кем-то");
 
 
-      //  new Select(driver.findElement(By.name("Region"))).selectByVisibleText("Москва");
-     /*   assertEquals("Москва",
-                new Select(driver.findElement(By.id("Region"))).getAllSelectedOptions().get(0).getText());
-        assertEquals("Введите адрес электронной почты",
-                driver.findElement(By.id("/html/body/div[7]/div/div/div/div[2]/div[2]/form/div[2]/div[6]/div/label/span")).getText());
-*/
         assertEquals("Ivan",
                 driver.findElement(By.id("surname_vzr_ins_0")).getAttribute("value"));
         assertEquals("Ivan",
@@ -116,9 +106,6 @@ public class Task_1_SberbankInsurance {
                 driver.findElement(By.id("documentIssue")).getAttribute("value"));
 
 
-      /*  WebElement insuranceBtn = driver.findElement(By.xpath("(//A[@href='/ru/person/bank_inshure/insuranceprogram/life/travel'][text()=" +
-                "'Страхование путешественников'][text()='Страхование путешественников'])[1]"));
-        wait.until(ExpectedConditions.visibilityOf(insuranceBtn)).click();*/
 
         driver.findElement(By.xpath("//*[contains(text(),'Продолжить')]")).click();
 
