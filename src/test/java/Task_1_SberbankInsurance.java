@@ -31,49 +31,100 @@ public class Task_1_SberbankInsurance {
     @Test
     public void testInsurance(){
         System.setProperty("webdriver.chrome.driver", "drv/chromedriver.exe");
-        driver.findElement(By.xpath("/html/body/div[1]/div[1]/div/div/div[5]/div[1]/div[2]/div/div[1]/ul/li[6]/button/span")).click();
-        driver.findElement(By.xpath("/html/body/div[1]/div[1]/div/div/div[5]/div[1]/div[2]/div/div[1]/ul/li[6]/div/div/div/div[1]/ul/li[2]/a")).click();
-//Проверить наличие на странице заголовка – Страхование путешественников
-        assertEquals("Страхование путешественников",
-                driver.findElement(By.name("LastName")).getAttribute("value"));
-
+        driver.findElement(By.xpath("//SPAN[@class='lg-menu__text'][text()='Страхование']")).click();
 
         Wait<WebDriver> wait = new WebDriverWait(driver, 5, 1000);
-        WebElement sendBtn = driver.findElement(By.xpath("/html/body/div[6]/div/div/div/div/a[3]"));
+        WebElement insuranceBtn = driver.findElement(By.xpath("(//A[@href='/ru/person/bank_inshure/insuranceprogram/life/travel'][text()=" +
+                "'Страхование путешественников'][text()='Страхование путешественников'])[1]"));
+        wait.until(ExpectedConditions.visibilityOf(insuranceBtn)).click();
+
+
+        //Проверить наличие на странице заголовка – Страхование путешественников
+        assertEquals("«Сбербанк» - Страхование путешественников",	driver.getTitle());
+        System.out.println("Page	title	is:	"	+	driver.getTitle());
+
+        WebElement sendBtn = driver.findElement(By.xpath("(//H2[@class='kit-heading kit-heading_l product-teaser-full-width__header'][text()='Страхование путешественников'][text()='Страхование путешественников'])[2]"));
         wait.until(ExpectedConditions.visibilityOf(sendBtn)).click();
 
 
-        WebElement title = driver.findElement(By.xpath("//h4[@class='modal-title']"));
+
+
+
+        driver.findElement(By.xpath("//B[@class='kit-button__text'][text()='Оформить онлайн']")).click();
+
+
+        driver.findElement(By.xpath("//H2[@_ngcontent-c1=''][text()='Страхование путешественников']")).click();
+        WebElement title = driver.findElement(By.xpath("//H2[@_ngcontent-c1=''][text()='Страхование путешественников']"));
         wait.until(ExpectedConditions.visibilityOf(title));
 
-        assertEquals("Заявка на добровольное медицинское страхование", title.getText());
+        driver.findElement(By.xpath("//*[text()='Минимальная']")).click();
 
-        fillInField(By.name("LastName"), "Иванов");
-        fillInField(By.name("FirstName"), "Иван");
-        fillInField(By.name("MiddleName"), "Иванович");
+        WebElement preparation = driver.findElement(By.xpath("//BUTTON[@class='btn btn-primary btn-large'][text()='Оформить']"));
+        wait.until(ExpectedConditions.visibilityOf(preparation));
 
-        new Select(driver.findElement(By.name("Region"))).selectByVisibleText("Москва");
+        driver.findElement(By.xpath("//BUTTON[@class='btn btn-primary btn-large'][text()='Оформить']")).click();
 
-        fillInField(By.name("Comment"), "SomethingForNothing");
-        fillInField(By.name("Email"), "Иванович");
+        WebElement titlePreparation = driver.findElement(By.xpath("(//DIV[@_ngcontent-c4=''])[6]"));
+        wait.until(ExpectedConditions.visibilityOf(titlePreparation));
+        //assertEquals("Заявка на добровольное медицинское страхование", titlePreparation.getText());
 
-        driver.findElement(By.xpath("//input[@class='checkbox']")).click();
-        driver.findElement(By.xpath("//*[@id='button-m']")).click();
+        fillInField(By.id("surname_vzr_ins_0"), "Ivan");
+        fillInField(By.id("name_vzr_ins_0"), "Ivan");
+        fillInField(By.id("birthDate_vzr_ins_0"), "10011990");
+        driver.findElement(By.id("person_lastName")).click();
+        driver.findElement(By.id("person_lastName")).sendKeys("Иванов");
+        fillInField(By.id("person_firstName"), "Иван");
+        fillInField(By.id("person_middleName"), "Иванович");
+        fillInField(By.id("person_birthDate"), "10011990");
+
+        driver.findElement(By.id("passportSeries")).click();
+        driver.findElement(By.id("passportSeries")).sendKeys("5200");
+        fillInField(By.id("passportNumber"), "360666");
+        fillInField(By.id("documentDate"), "10102010");
+        driver.findElement(By.id("documentIssue")).click();
+        driver.findElement(By.id("documentIssue")).sendKeys("Кем-то");
 
 
-        assertEquals("Москва",
-                new Select(driver.findElement(By.name("Region"))).getAllSelectedOptions().get(0).getText());
+      //  new Select(driver.findElement(By.name("Region"))).selectByVisibleText("Москва");
+     /*   assertEquals("Москва",
+                new Select(driver.findElement(By.id("Region"))).getAllSelectedOptions().get(0).getText());
         assertEquals("Введите адрес электронной почты",
-                driver.findElement(By.xpath("/html/body/div[7]/div/div/div/div[2]/div[2]/form/div[2]/div[6]/div/label/span")).getText());
+                driver.findElement(By.id("/html/body/div[7]/div/div/div/div[2]/div[2]/form/div[2]/div[6]/div/label/span")).getText());
+*/
+        assertEquals("Ivan",
+                driver.findElement(By.id("surname_vzr_ins_0")).getAttribute("value"));
+        assertEquals("Ivan",
+                driver.findElement(By.id("name_vzr_ins_0")).getAttribute("value"));
+        assertEquals("10.01.1990",
+                driver.findElement(By.id("birthDate_vzr_ins_0")).getAttribute("value"));
 
         assertEquals("Иванов",
-                driver.findElement(By.name("LastName")).getAttribute("value"));
+                driver.findElement(By.id("person_lastName")).getAttribute("value"));
         assertEquals("Иван",
-                driver.findElement(By.name("FirstName")).getAttribute("value"));
+                driver.findElement(By.id("person_firstName")).getAttribute("value"));
         assertEquals("Иванович",
-                driver.findElement(By.name("MiddleName")).getAttribute("value"));
-        assertEquals("Иванович", driver.findElement(By.name("Email")).getAttribute("value"));
-        assertEquals("SomethingForNothing", driver.findElement(By.name("Comment")).getAttribute("value"));
+                driver.findElement(By.id("person_middleName")).getAttribute("value"));
+        assertEquals("10.01.1990",
+                driver.findElement(By.id("person_birthDate")).getAttribute("value"));
+        assertEquals("5200",
+                driver.findElement(By.id("passportSeries")).getAttribute("value"));
+        assertEquals("360666",
+                driver.findElement(By.id("passportNumber")).getAttribute("value"));
+        assertEquals("10.10.2010",
+                driver.findElement(By.id("documentDate")).getAttribute("value"));
+        assertEquals("Кем-то",
+                driver.findElement(By.id("documentIssue")).getAttribute("value"));
+
+
+      /*  WebElement insuranceBtn = driver.findElement(By.xpath("(//A[@href='/ru/person/bank_inshure/insuranceprogram/life/travel'][text()=" +
+                "'Страхование путешественников'][text()='Страхование путешественников'])[1]"));
+        wait.until(ExpectedConditions.visibilityOf(insuranceBtn)).click();*/
+
+        driver.findElement(By.xpath("//*[contains(text(),'Продолжить')]")).click();
+
+
+        assertEquals("При заполнении данных произошла ошибка",
+                driver.findElement(By.xpath("//*[@class='alert-form alert-form-error']")).getText());
     }
 
 
