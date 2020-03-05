@@ -34,8 +34,7 @@ public class Task_1_SberbankInsurance {
         driver.findElement(By.xpath("//SPAN[@class='lg-menu__text'][text()='Страхование']")).click();
 
         Wait<WebDriver> wait = new WebDriverWait(driver, 5, 1000);
-        WebElement insuranceBtn = driver.findElement(By.xpath("(//A[@href='/ru/person/bank_inshure/insuranceprogram/life/travel'][text()=" +
-                "'Страхование путешественников'][text()='Страхование путешественников'])[1]"));
+        WebElement insuranceBtn = driver.findElement(By.xpath("(//A[@href='/ru/person/bank_inshure/insuranceprogram/life/travel'][text()='Страхование путешественников'][text()='Страхование путешественников'])[1]"));
         wait.until(ExpectedConditions.visibilityOf(insuranceBtn)).click();
 
 
@@ -63,7 +62,7 @@ public class Task_1_SberbankInsurance {
         WebElement titlePreparation = driver.findElement(By.xpath("(//DIV[@_ngcontent-c4=''])[6]"));
         wait.until(ExpectedConditions.visibilityOf(titlePreparation));
 
- 
+
         fillInField(By.id("surname_vzr_ins_0"), "Ivan");
         fillInField(By.id("name_vzr_ins_0"), "Ivan");
         fillInField(By.id("birthDate_vzr_ins_0"), "10011990");
