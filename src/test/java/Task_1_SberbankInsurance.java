@@ -63,7 +63,7 @@ public class Task_1_SberbankInsurance {
         WebElement titlePreparation = driver.findElement(By.xpath("(//DIV[@_ngcontent-c4=''])[6]"));
         wait.until(ExpectedConditions.visibilityOf(titlePreparation));
 
-
+ 
         fillInField(By.id("surname_vzr_ins_0"), "Ivan");
         fillInField(By.id("name_vzr_ins_0"), "Ivan");
         fillInField(By.id("birthDate_vzr_ins_0"), "10011990");
