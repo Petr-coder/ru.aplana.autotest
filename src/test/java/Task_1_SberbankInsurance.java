@@ -6,11 +6,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
 
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
+import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
 public class Task_1_SberbankInsurance {
 
@@ -31,22 +33,23 @@ public class Task_1_SberbankInsurance {
     @Test
     public void testInsurance(){
         System.setProperty("webdriver.chrome.driver", "drv/chromedriver.exe");
-        driver.findElement(By.xpath("//SPAN[@class='lg-menu__text'][text()='Страхование']")).click();
+        Wait<WebDriver> wait = new WebDriverWait(driver, 5, 3000);
 
-        Wait<WebDriver> wait = new WebDriverWait(driver, 5, 1000);
-        WebElement insuranceBtn = driver.findElement(By.xpath("(//A[@href='/ru/person/bank_inshure/insuranceprogram/life/travel'][text()='Страхование путешественников'][text()='Страхование путешественников'])[1]"));
-        wait.until(ExpectedConditions.visibilityOf(insuranceBtn)).click();
+        Actions action = new Actions(driver);
+        WebElement we = driver.findElement(By.xpath("//SPAN[@class='lg-menu__text'][text()='Страхование']"));
+        action.moveToElement(we).moveToElement(driver.findElement(By.xpath("(//*[text()='Страхование путешественников'][text()='Страхование путешественников'])[1]"))).click().build().perform();
 
 
         //Проверить наличие на странице заголовка – Страхование путешественников
+        WebElement fuckingTitle = driver.findElement(By.xpath("(//H2[@class='kit-heading kit-heading_l product-teaser-full-width__header'][text()='Страхование путешественников'][text()='Страхование путешественников'])[2]"));
+        wait.until(ExpectedConditions.visibilityOf(fuckingTitle)).click();
+
+
         assertEquals("«Сбербанк» - Страхование путешественников",	driver.getTitle());
         System.out.println("Page	title	is:	"	+	driver.getTitle());
 
-        WebElement sendBtn = driver.findElement(By.xpath("(//H2[@class='kit-heading kit-heading_l product-teaser-full-width__header'][text()='Страхование путешественников'][text()='Страхование путешественников'])[2]"));
-        wait.until(ExpectedConditions.visibilityOf(sendBtn)).click();
-
-        driver.findElement(By.xpath("//B[@class='kit-button__text'][text()='Оформить онлайн']")).click();
-
+        WebElement onlineRegistration = driver.findElement(By.xpath("//B[@class='kit-button__text'][text()='Оформить онлайн']"));
+        wait.until(ExpectedConditions.elementToBeClickable(onlineRegistration)).click();
 
         driver.findElement(By.xpath("//H2[@_ngcontent-c1=''][text()='Страхование путешественников']")).click();
         WebElement title = driver.findElement(By.xpath("//H2[@_ngcontent-c1=''][text()='Страхование путешественников']"));
@@ -55,12 +58,7 @@ public class Task_1_SberbankInsurance {
         driver.findElement(By.xpath("//*[text()='Минимальная']")).click();
 
         WebElement preparation = driver.findElement(By.xpath("//BUTTON[@class='btn btn-primary btn-large'][text()='Оформить']"));
-        wait.until(ExpectedConditions.visibilityOf(preparation));
-
-        driver.findElement(By.xpath("//BUTTON[@class='btn btn-primary btn-large'][text()='Оформить']")).click();
-
-        WebElement titlePreparation = driver.findElement(By.xpath("(//DIV[@_ngcontent-c4=''])[6]"));
-        wait.until(ExpectedConditions.visibilityOf(titlePreparation));
+        wait.until(ExpectedConditions.elementToBeClickable(preparation)).click();
 
 
         fillInField(By.id("surname_vzr_ins_0"), "Ivan");
