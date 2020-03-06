@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.assertEquals;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
-public class Task_1_SberbankInsurance {
+public class SberbankInsuranceTest {
 
 
     WebDriver driver;
