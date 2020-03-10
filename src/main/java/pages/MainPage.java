@@ -19,10 +19,10 @@ public class MainPage {
     }
 
     public void selectMainMenu(String menuItem){
-    mainMenu.findElement(By.xpath("//SPAN[@class='lg-menu__text'][text()='"+menuItem+"']"));
+    mainMenu.findElement(By.xpath("//SPAN[@class='lg-menu__text'][text()='"+menuItem+"']")).click();
 }
 
     public void selectSubMenu(String menuItem){
-    subMenu.findElement(By.xpath("(//A[@href='/ru/person/bank_inshure/insuranceprogram/life/travel'][text()='Страхование путешественников'][text()='\"+menuItem+\"'])[1]"));
+    subMenu.findElement(By.xpath("(//A[@href='/ru/person/bank_inshure/insuranceprogram/life/travel'][text()='Страхование путешественников'][text()='\"+menuItem+\"'])[1]")).click();
     }
 }

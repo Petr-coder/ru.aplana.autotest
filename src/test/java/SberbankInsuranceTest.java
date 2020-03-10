@@ -1,3 +1,4 @@
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -21,6 +22,7 @@ public class SberbankInsuranceTest extends BaseTest {
         //driver.get(baseUrl);
 
     @Test
+    @Ignore
     public void testInsurance(){
        // System.setProperty("webdriver.chrome.driver", "drv/chromedriver.exe");
         driver.get(baseUrl);
