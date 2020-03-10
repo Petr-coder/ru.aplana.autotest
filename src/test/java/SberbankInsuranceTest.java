@@ -33,7 +33,7 @@ public class SberbankInsuranceTest {
     @Test
     public void testInsurance(){
         System.setProperty("webdriver.chrome.driver", "drv/chromedriver.exe");
-        Wait<WebDriver> wait = new WebDriverWait(driver, 5, 3000);
+        Wait<WebDriver> wait = new WebDriverWait(driver, 5, 250);
 
         Actions action = new Actions(driver);
         WebElement we = driver.findElement(By.xpath("//SPAN[@class='lg-menu__text'][text()='Страхование']"));
@@ -51,7 +51,7 @@ public class SberbankInsuranceTest {
         WebElement onlineRegistration = driver.findElement(By.xpath("//B[@class='kit-button__text'][text()='Оформить онлайн']"));
         wait.until(ExpectedConditions.elementToBeClickable(onlineRegistration)).click();
 
-        driver.findElement(By.xpath("//H2[@_ngcontent-c1=''][text()='Страхование путешественников']")).click();
+        driver.findElement(By.xpath("//H2[@_ngcontent-c1=''][text()='Страхование путешественников']"));
         WebElement title = driver.findElement(By.xpath("//H2[@_ngcontent-c1=''][text()='Страхование путешественников']"));
         wait.until(ExpectedConditions.visibilityOf(title));
 
