@@ -14,25 +14,16 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.assertEquals;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
-public class SberbankInsuranceTest {
+public class SberbankInsuranceTest extends BaseTest {
 
-
-    WebDriver driver;
-    String baseUrl;
-
-    @Before
-    public void beforeTest(){
-        System.setProperty("webdriver.chrome.driver", "drv/chromedriver.exe");
-        driver = new ChromeDriver();
-        baseUrl = "http://www.sberbank.ru/ru/person";
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-        driver.get(baseUrl);
-    }
+        //driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        //driver.manage().window().maximize();
+        //driver.get(baseUrl);
 
     @Test
     public void testInsurance(){
-        System.setProperty("webdriver.chrome.driver", "drv/chromedriver.exe");
+       // System.setProperty("webdriver.chrome.driver", "drv/chromedriver.exe");
+        driver.get(baseUrl);
         Wait<WebDriver> wait = new WebDriverWait(driver, 5, 250);
 
         Actions action = new Actions(driver);
@@ -61,19 +52,19 @@ public class SberbankInsuranceTest {
         wait.until(ExpectedConditions.elementToBeClickable(preparation)).click();
 
 
-        fillInField(By.id("surname_vzr_ins_0"), "Ivan");
-        fillInField(By.id("name_vzr_ins_0"), "Ivan");
-        fillInField(By.id("birthDate_vzr_ins_0"), "10011990");
+        fillField(By.id("surname_vzr_ins_0"), "Ivan");
+        fillField(By.id("name_vzr_ins_0"), "Ivan");
+        fillField(By.id("birthDate_vzr_ins_0"), "10011990");
         driver.findElement(By.id("person_lastName")).click();
         driver.findElement(By.id("person_lastName")).sendKeys("Иванов");
-        fillInField(By.id("person_firstName"), "Иван");
-        fillInField(By.id("person_middleName"), "Иванович");
-        fillInField(By.id("person_birthDate"), "10011990");
+        fillField(By.id("person_firstName"), "Иван");
+        fillField(By.id("person_middleName"), "Иванович");
+        fillField(By.id("person_birthDate"), "10011990");
 
         driver.findElement(By.id("passportSeries")).click();
         driver.findElement(By.id("passportSeries")).sendKeys("5200");
-        fillInField(By.id("passportNumber"), "360666");
-        fillInField(By.id("documentDate"), "10102010");
+        fillField(By.id("passportNumber"), "360666");
+        fillField(By.id("documentDate"), "10102010");
         driver.findElement(By.id("documentIssue")).click();
         driver.findElement(By.id("documentIssue")).sendKeys("Кем-то");
 
@@ -110,25 +101,6 @@ public class SberbankInsuranceTest {
         assertEquals("При заполнении данных произошла ошибка",
                 driver.findElement(By.xpath("//*[@class='alert-form alert-form-error']")).getText());
     }
-
-
-    public void fillInField (By locator, String value){
-        driver.findElement(locator).clear();
-        driver.findElement(locator).sendKeys(value);
-    }
-
-
-
-
-
-    @After
-    public void afterTest(){
-
-        driver.quit();
-
-    }
-
-
 
 
 }
