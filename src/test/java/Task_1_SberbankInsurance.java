@@ -33,7 +33,7 @@ public class Task_1_SberbankInsurance {
     @Test
     public void testInsurance(){
         System.setProperty("webdriver.chrome.driver", "drv/chromedriver.exe");
-        Wait<WebDriver> wait = new WebDriverWait(driver, 5, 3000);
+        Wait<WebDriver> wait = new WebDriverWait(driver, 5, 250);
 
         Actions action = new Actions(driver);
         WebElement we = driver.findElement(By.xpath("//SPAN[@class='lg-menu__text'][text()='Страхование']"));
