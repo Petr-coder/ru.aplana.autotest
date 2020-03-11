@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.assertEquals;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
-public class Task_1_SberbankInsurance {
+public class SberbankInsuranceTest {
 
 
     WebDriver driver;
@@ -51,7 +51,7 @@ public class Task_1_SberbankInsurance {
         WebElement onlineRegistration = driver.findElement(By.xpath("//B[@class='kit-button__text'][text()='Оформить онлайн']"));
         wait.until(ExpectedConditions.elementToBeClickable(onlineRegistration)).click();
 
-        driver.findElement(By.xpath("//H2[@_ngcontent-c1=''][text()='Страхование путешественников']")).click();
+        driver.findElement(By.xpath("//H2[@_ngcontent-c1=''][text()='Страхование путешественников']"));
         WebElement title = driver.findElement(By.xpath("//H2[@_ngcontent-c1=''][text()='Страхование путешественников']"));
         wait.until(ExpectedConditions.visibilityOf(title));
 

@@ -1,3 +1,4 @@
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.After;
 
 import org.junit.Before;
@@ -7,12 +8,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.*;
+import pages.BasePage;
 
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 
-public class InsuranceTest {
+public class InsuranceTest extends BasePage {
 
     WebDriver driver;
     String baseUrl;
@@ -30,6 +32,7 @@ public class InsuranceTest {
     }
 
     @Test
+    @Ignore
         public void testInsurance(){
         System.setProperty("webdriver.chrome.driver", "drv/chromedriver.exe");
         driver.findElement(By.xpath("/html/body/div[2]/div/div[2]/ol[1]/li/a")).click();
