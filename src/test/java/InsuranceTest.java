@@ -8,12 +8,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.*;
+import pages.BasePage;
 
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 
-public class InsuranceTest {
+public class InsuranceTest extends BasePage {
 
     WebDriver driver;
     String baseUrl;
