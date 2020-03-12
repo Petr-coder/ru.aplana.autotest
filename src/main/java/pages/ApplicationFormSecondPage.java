@@ -86,6 +86,7 @@ public class ApplicationFormSecondPage extends BasePage {
 
             case  "passportSeries":
                 fillField(passportSeries, value);
+                passportSeries.sendKeys(Keys.TAB);
                 break;
             case  "passportNumber":
                 fillField(passportNumber, value);
@@ -95,6 +96,7 @@ public class ApplicationFormSecondPage extends BasePage {
                 break;
             case  "Кем выдан":
                 fillField(documentIssue, value);
+                documentIssue.sendKeys(Keys.TAB);
                 break;
             default:  throw new AssertionError("Поле '"+fieldName+"' не объявлено на странице");
         }
