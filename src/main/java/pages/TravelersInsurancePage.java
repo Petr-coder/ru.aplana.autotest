@@ -11,10 +11,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TravelersInsurancePage extends BasePage {
 
-    @FindBy(xpath = "")
+    @FindBy(xpath = "(//H2[@class='kit-heading kit-heading_l product-teaser-full-width__header'][text()='Страхование путешественников'][text()='Страхование путешественников'])[2]")
     public WebElement title;
 
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//B[@class='kit-button__text'][text()='Оформить онлайн']")
     public WebElement sendAppButton;
 
     public TravelersInsurancePage(WebDriver driver){
@@ -27,6 +27,7 @@ public class TravelersInsurancePage extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(
                 driver.findElement(By.xpath("//B[@class='kit-button__text'][text()='Оформить онлайн']")))).click();
     }
+
 
 
 }
