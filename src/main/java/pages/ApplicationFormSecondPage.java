@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -64,11 +65,12 @@ public class ApplicationFormSecondPage extends BasePage {
             case  "Имя / Given names":
                 fillField(firstNameOfInsured, value);
                 break;
-            case  "Дата рождения":
+            case  "birthDate_vzr_ins_0":
                 fillField(contactDateOfInsured, value);
                 break;
             case  "Фамилия":
                 fillField(lastNameOfPolicyholder, value);
+                lastNameOfPolicyholder.sendKeys(Keys.TAB);
                 break;
 
             case  "Имя":
@@ -78,33 +80,62 @@ public class ApplicationFormSecondPage extends BasePage {
                 fillField(middleNameOfPolicyholder, value);
                 middleNameOfPolicyholder.sendKeys(Keys.TAB);
                 break;
-
             case  "Дата рождения":
                 fillField(contactDateOfPolicyholder, value);
                 break;
 
-            case  "Серия и номер паспорта":
+            case  "passportSeries":
                 fillField(passportSeries, value);
                 break;
-
-
-            case  "Серия и номер паспорта":
+            case  "passportNumber":
                 fillField(passportNumber, value);
                 break;
-
-
-
             case  "Дата выдачи":
                 fillField(documentDateOfPolicyholder, value);
                 break;
-
             case  "Кем выдан":
                 fillField(documentIssue, value);
                 break;
-
             default:  throw new AssertionError("Поле '"+fieldName+"' не объявлено на странице");
         }
     }
+
+
+    public String getFillField(String fieldName){
+        switch (fieldName){
+            case  "Фамилия /Surname":
+                return lastNameOfInsured.getAttribute("value");
+            case  "Имя / Given names":
+                return firstNameOfInsured.getAttribute("value");
+            case  "birthDate_vzr_ins_0":
+                return contactDateOfInsured.getAttribute("value");
+            case  "Фамилия":
+                return lastNameOfPolicyholder.getAttribute("value");
+            case  "Имя":
+                return firstNameOfPolicyholder.getAttribute("value");
+            case  "Отчество":
+                return middleNameOfPolicyholder.getAttribute("value");
+            case  "Дата рождения":
+                return contactDateOfPolicyholder.getAttribute("value");
+            case  "passportSeries":
+                return passportSeries.getAttribute("value");
+            case  "passportNumber":
+                return passportNumber.getAttribute("value");
+            case  "Дата выдачи":
+                return documentDateOfPolicyholder.getAttribute("value");
+            case  "Кем выдан":
+                return documentIssue.getAttribute("value");
+                   }
+        throw new AssertionError("Поле не объявлено на странице");
+    }
+
+    public void checkFieldErrorMessage(String field, String errorMessage){
+        String xpath = "//*[text()='"+field+"']/..//*[@class='validation-error-text']";
+        String actualValue = driver.findElement(By.xpath(xpath)).getText();
+        org.junit.Assert.assertTrue(String.format("Получено значение [%s]. Ожидалось [%s]", actualValue, errorMessage),
+                actualValue.contains(errorMessage));
+    }
+
 
 
 }
