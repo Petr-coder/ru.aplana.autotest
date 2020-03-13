@@ -39,8 +39,9 @@ public class RefactoredSberbankInsurenceTest extends BaseTest {
         applicationFormSecondPage.fillField("passportNumber", "363677");
         applicationFormSecondPage.fillField("Дата выдачи", "10102010");
         applicationFormSecondPage.fillField("Кем выдан", "ывапывап");
-        applicationFormSecondPage.sendButton.click();
+        applicationFormSecondPage.waitContinueButton();
 
+        applicationFormSecondPage.checkFieldErrorMessage("При заполнении данных произошла ошибка");
 
     }
 }

@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ApplicationFormSecondPage extends BasePage {
@@ -47,8 +48,8 @@ public class ApplicationFormSecondPage extends BasePage {
     @FindBy(id = "documentIssue")
     public WebElement documentIssue;
 
-    @FindBy(xpath = "//button[contains(text(),'Отправить')]")
-    public WebElement sendButton;
+    @FindBy(xpath = "//*[contains(text(),'Продолжить')]")
+    public WebElement continueButton;
 
     public ApplicationFormSecondPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -69,10 +70,11 @@ public class ApplicationFormSecondPage extends BasePage {
                 fillField(contactDateOfInsured, value);
                 break;
             case  "Фамилия":
-                fillField(lastNameOfPolicyholder, value);
-                lastNameOfPolicyholder.sendKeys(Keys.TAB);
+                //fillField(lastNameOfPolicyholder, value);
+                //lastNameOfPolicyholder.sendKeys(Keys.TAB);
+                driver.findElement(By.id("person_lastName")).click();
+                driver.findElement(By.id("person_lastName")).sendKeys("Иванов");
                 break;
-
             case  "Имя":
                 fillField(firstNameOfPolicyholder, value);
                 break;
@@ -85,8 +87,10 @@ public class ApplicationFormSecondPage extends BasePage {
                 break;
 
             case  "passportSeries":
-                fillField(passportSeries, value);
-                passportSeries.sendKeys(Keys.TAB);
+                //fillField(passportSeries, value);
+                //passportSeries.sendKeys(Keys.TAB);
+                driver.findElement(By.id("passportSeries")).click();
+                driver.findElement(By.id("passportSeries")).sendKeys("5200");
                 break;
             case  "passportNumber":
                 fillField(passportNumber, value);
@@ -95,8 +99,10 @@ public class ApplicationFormSecondPage extends BasePage {
                 fillField(documentDateOfPolicyholder, value);
                 break;
             case  "Кем выдан":
-                fillField(documentIssue, value);
-                documentIssue.sendKeys(Keys.TAB);
+                //fillField(documentIssue, value);
+                //documentIssue.sendKeys(Keys.TAB);
+                driver.findElement(By.id("documentIssue")).click();
+                driver.findElement(By.id("documentIssue")).sendKeys("Кем-то");
                 break;
             default:  throw new AssertionError("Поле '"+fieldName+"' не объявлено на странице");
         }
@@ -131,13 +137,16 @@ public class ApplicationFormSecondPage extends BasePage {
         throw new AssertionError("Поле не объявлено на странице");
     }
 
-    public void checkFieldErrorMessage(String field, String errorMessage){
-        String xpath = "//*[text()='"+field+"']/..//*[@class='validation-error-text']";
-        String actualValue = driver.findElement(By.xpath(xpath)).getText();
+    public void checkFieldErrorMessage(String errorMessage){
+        //String xpath = "//*[text()='"+field+"']/..//*[@class='validation-error-text']";
+        String actualValue = driver.findElement(By.xpath("//*[@class='alert-form alert-form-error']")).getText();
         org.junit.Assert.assertTrue(String.format("Получено значение [%s]. Ожидалось [%s]", actualValue, errorMessage),
                 actualValue.contains(errorMessage));
     }
 
-
+    public void waitContinueButton(){
+        Wait<WebDriver> wait = new WebDriverWait(driver, 5, 250);
+        wait.until(ExpectedConditions.elementToBeClickable(continueButton)).click();
+    }
 
 }
