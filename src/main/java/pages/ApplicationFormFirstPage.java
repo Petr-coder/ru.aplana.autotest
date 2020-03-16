@@ -30,18 +30,17 @@ public class ApplicationFormFirstPage extends BasePage {
         this.driver = driver;
     }
 
-    public void waitInsuranceCoverAmount(){
+    public void waitInsuranceCoverAmount() {
         Wait<WebDriver> wait = new WebDriverWait(driver, 5, 250);
         wait.until(ExpectedConditions.elementToBeClickable(
                 driver.findElement(By.xpath("//*[text()='Минимальная']")))).click();
     }
 
-    public void waitMakeOnlineApplication(){
+    public void waitMakeOnlineApplication() {
         Wait<WebDriver> wait = new WebDriverWait(driver, 5, 250);
         wait.until(ExpectedConditions.elementToBeClickable(
                 driver.findElement(By.xpath("//BUTTON[@class='btn btn-primary btn-large'][text()='Оформить']")))).click();
     }
-
 
 
 }

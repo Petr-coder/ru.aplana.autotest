@@ -17,17 +17,16 @@ public class TravelersInsurancePage extends BasePage {
     @FindBy(xpath = "//B[@class='kit-button__text'][text()='Оформить онлайн']")
     public WebElement sendAppButton;
 
-    public TravelersInsurancePage(WebDriver driver){
+    public TravelersInsurancePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
-    public void waitSendAppClickable(){
+    public void waitSendAppClickable() {
         Wait<WebDriver> wait = new WebDriverWait(driver, 5, 250);
         wait.until(ExpectedConditions.visibilityOf(
                 driver.findElement(By.xpath("//B[@class='kit-button__text'][text()='Оформить онлайн']")))).click();
     }
-
 
 
 }

@@ -18,21 +18,21 @@ public class MainPage extends BasePage {
     @FindBy(xpath = "//DIV[@id='submenu-5']")
     WebElement subMenu;
 
-    public MainPage(WebDriver driver){
+    public MainPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
 
     }
 
-    public void selectMainMenu(String menuItem){
+    public void selectMainMenu(String menuItem) {
         Actions action = new Actions(driver);
-        action.moveToElement(mainMenu.findElement(By.xpath("//SPAN[@class='lg-menu__text'][text()='"+menuItem+"']"))).click().build().perform();
+        action.moveToElement(mainMenu.findElement(By.xpath("//SPAN[@class='lg-menu__text'][text()='" + menuItem + "']"))).click().build().perform();
     }
 
     public void selectSubMenu(String menuItem) throws InterruptedException {
         Actions action = new Actions(driver);
         Wait<WebDriver> wait = new WebDriverWait(driver, 5, 250);
-        WebElement travellersInsuranceButton = subMenu.findElement(By.xpath("(//A[@href='/ru/person/bank_inshure/insuranceprogram/life/travel'][text()='Страхование путешественников'][text()='"+menuItem+"'])[1]"));
+        WebElement travellersInsuranceButton = subMenu.findElement(By.xpath("(//A[@href='/ru/person/bank_inshure/insuranceprogram/life/travel'][text()='Страхование путешественников'][text()='" + menuItem + "'])[1]"));
         wait.until(ExpectedConditions.elementToBeClickable(travellersInsuranceButton)).click();
     }
 }
