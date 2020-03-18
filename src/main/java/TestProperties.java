@@ -14,7 +14,7 @@ public class TestProperties {
     private TestProperties() {
         System.setProperty("environment", "application");
         try {
-            properties.load(new FileInputStream(new File("C:\\Users\\PMikhaylov.APPLINE\\IdeaProjects\\ru.aplana.autotest\\environment.properties")));
+            properties.load(new FileInputStream(new File("environment.properties")));
         } catch (IOException e) {
             e.printStackTrace();
         }

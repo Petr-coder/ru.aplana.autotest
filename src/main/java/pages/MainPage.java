@@ -32,7 +32,10 @@ public class MainPage extends BasePage {
     public void selectSubMenu(String menuItem) throws InterruptedException {
         Actions action = new Actions(driver);
         Wait<WebDriver> wait = new WebDriverWait(driver, 5, 250);
-        WebElement travellersInsuranceButton = subMenu.findElement(By.xpath("(//A[@href='/ru/person/bank_inshure/insuranceprogram/life/travel'][text()='Страхование путешественников'][text()='" + menuItem + "'])[1]"));
-        wait.until(ExpectedConditions.elementToBeClickable(travellersInsuranceButton)).click();
+        //WebElement travellersInsuranceButton = subMenu.findElement(By.xpath("(//A[@href='/ru/person/bank_inshure/insuranceprogram/life/travel'][text()='" + menuItem + "'])[1]"));
+
+        WebElement travellersInsuranceButton = subMenu.findElement(By.xpath("(//A[text()='" + menuItem + "'][text()='" + menuItem + "'])[1]"));
+        //wait.until(ExpectedConditions.elementToBeClickable(travellersInsuranceButton)).click();
+        action.moveToElement(travellersInsuranceButton).click().build().perform();
     }
 }

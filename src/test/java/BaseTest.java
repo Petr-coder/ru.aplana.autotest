@@ -30,10 +30,7 @@ public class BaseTest {
                 System.setProperty("webdriver.gecko.driver", properties.getProperty("webdriver.gecko.driver"));
                 driver = new FirefoxDriver();
                 break;
-            case "chrome":
-                System.setProperty("webdriver.chrome.driver", properties.getProperty("webdriver.chrome.driver"));
-                driver = new ChromeDriver();
-                break;
+
             default:
                 System.setProperty("webdriver.chrome.driver", properties.getProperty("webdriver.chrome.driver"));
                 driver = new ChromeDriver();
