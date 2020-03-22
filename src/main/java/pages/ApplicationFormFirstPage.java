@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import steps.BaseSteps;
 
 public class ApplicationFormFirstPage extends BasePage {
 
@@ -23,23 +24,22 @@ public class ApplicationFormFirstPage extends BasePage {
     public WebElement insuranceCoverAmount;
 
 
-    public ApplicationFormFirstPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        (new WebDriverWait(driver, 10))
+    public ApplicationFormFirstPage() {
+        PageFactory.initElements(BaseSteps.getDriver(), this);
+        (new WebDriverWait(BaseSteps.getDriver(), 10))
                 .until(ExpectedConditions.visibilityOf(titleOfApplicationSelectPolicy));
-        this.driver = driver;
     }
 
-    public void waitInsuranceCoverAmount() {
-        Wait<WebDriver> wait = new WebDriverWait(driver, 5, 250);
+    public void waitInsuranceCoverAmount(String field) {
+        Wait<WebDriver> wait = new WebDriverWait(BaseSteps.getDriver(), 5, 250);
         wait.until(ExpectedConditions.elementToBeClickable(
-                driver.findElement(By.xpath("//*[text()='Минимальная']")))).click();
+                BaseSteps.getDriver().findElement(By.xpath("//*[text()='"+field+"']")))).click();
     }
 
-    public void waitMakeOnlineApplication() {
-        Wait<WebDriver> wait = new WebDriverWait(driver, 5, 250);
+    public void waitMakeOnlineApplication(String field) {
+        Wait<WebDriver> wait = new WebDriverWait(BaseSteps.getDriver(), 5, 250);
         wait.until(ExpectedConditions.elementToBeClickable(
-                driver.findElement(By.xpath("//BUTTON[@class='btn btn-primary btn-large'][text()='Оформить']")))).click();
+                BaseSteps.getDriver().findElement(By.xpath("//BUTTON[@class='btn btn-primary btn-large'][text()='"+field+"']")))).click();
     }
 
 

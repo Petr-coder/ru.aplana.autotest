@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import steps.BaseSteps;
 
 public class MainPage extends BasePage {
 
@@ -19,19 +20,18 @@ public class MainPage extends BasePage {
     WebElement subMenu;
 
     public MainPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        this.driver = driver;
+        PageFactory.initElements(BaseSteps.getDriver(), this);
 
     }
 
     public void selectMainMenu(String menuItem) {
-        Actions action = new Actions(driver);
+        Actions action = new Actions(BaseSteps.getDriver());
         action.moveToElement(mainMenu.findElement(By.xpath("//SPAN[@class='lg-menu__text'][text()='" + menuItem + "']"))).click().build().perform();
     }
 
     public void selectSubMenu(String menuItem) throws InterruptedException {
-        Actions action = new Actions(driver);
-        Wait<WebDriver> wait = new WebDriverWait(driver, 5, 250);
+        Actions action = new Actions(BaseSteps.getDriver());
+        Wait<WebDriver> wait = new WebDriverWait(BaseSteps.getDriver(), 5, 250);
         //WebElement travellersInsuranceButton = subMenu.findElement(By.xpath("(//A[@href='/ru/person/bank_inshure/insuranceprogram/life/travel'][text()='" + menuItem + "'])[1]"));
 
         WebElement travellersInsuranceButton = subMenu.findElement(By.xpath("(//A[text()='" + menuItem + "'][text()='" + menuItem + "'])[1]"));
