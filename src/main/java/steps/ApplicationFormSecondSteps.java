@@ -38,7 +38,7 @@ public class ApplicationFormSecondSteps {
     }
 
     @Step("выбирается поле")
-    public void stepWaitContinueButton(String field){
-        new ApplicationFormSecondPage().waitContinueButton(field);
+    public void stepWaitContinueButton(){
+        new ApplicationFormSecondPage().waitContinueButton();
     }
 }

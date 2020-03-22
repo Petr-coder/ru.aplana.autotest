@@ -150,10 +150,9 @@ public class ApplicationFormSecondPage extends BasePage {
                 actualValue.contains(errorMessage));
     }
 
-    public void waitContinueButton(String field) {
+    public void waitContinueButton() {
         Wait<WebDriver> wait = new WebDriverWait(BaseSteps.getDriver(), 5, 250);
-        wait.until(ExpectedConditions.elementToBeClickable(
-                BaseSteps.getDriver().findElement(By.xpath("//*[contains(text(),'"+field+"')]")))).click();
+        wait.until(ExpectedConditions.elementToBeClickable(continueButton)).click();
     }
 
 }
