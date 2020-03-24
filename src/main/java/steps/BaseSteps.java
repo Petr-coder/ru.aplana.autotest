@@ -24,15 +24,14 @@ public class BaseSteps {
 
 
     @Before
-    public void startScenario(){
+    public void startScenario() {
         System.setProperty("webdriver.chrome.driver", "drv/chromedriver.exe");
         driver = new ChromeDriver();
-        driver .get("http://www.sberbank.ru/ru/person");
-        driver .manage().window().maximize();
-        driver .manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        driver .manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+        driver.get("http://www.sberbank.ru/ru/person");
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
     }
-
 
 
     @AfterClass
@@ -50,8 +49,8 @@ public class BaseSteps {
     }
 
     @AfterClass
-    public static void afterMethod(){
-        driver .quit();
+    public static void afterMethod() {
+        driver.quit();
     }
 
     @Attachment(type = "image/png", value = "Screenshot")

@@ -6,8 +6,8 @@ import java.util.HashMap;
 
 public class MyTestForAllureReport extends BaseSteps {
 
-    @Test
     @Title("Страхование")
+    @Test
     public void textInsurance() throws InterruptedException {
         MainSteps mainSteps = new MainSteps();
         TravelersInsuranceSteps travelersInsuranceSteps = new TravelersInsuranceSteps();
