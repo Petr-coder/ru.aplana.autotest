@@ -1,7 +1,8 @@
 package steps;
 
+import io.qameta.allure.Step;
 import pages.TravelersInsurancePage;
-import ru.yandex.qatools.allure.annotations.Step;
+
 
 public class TravelersInsuranceSteps extends BaseSteps {
 

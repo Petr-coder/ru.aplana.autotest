@@ -1,12 +1,13 @@
+import io.qameta.allure.Description;
 import org.junit.Test;
-import ru.yandex.qatools.allure.annotations.Title;
+
 import steps.*;
 
 import java.util.HashMap;
 
-public class MyTestForAllureReport extends BaseSteps {
+public class MyTestForAllureReportTest extends BaseSteps {
 
-    @Title("Страхование")
+    @Description(value = "Страхование")
     @Test
     public void textInsurance() throws InterruptedException {
         MainSteps mainSteps = new MainSteps();

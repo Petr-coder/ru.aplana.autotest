@@ -1,9 +1,10 @@
 package steps;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import pages.ApplicationFormFirstPage;
 import pages.ApplicationFormSecondPage;
-import ru.yandex.qatools.allure.annotations.Step;
+
 import java.util.HashMap;
 import static org.junit.Assert.assertTrue;
 

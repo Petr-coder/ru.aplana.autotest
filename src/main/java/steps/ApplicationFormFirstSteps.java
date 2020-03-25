@@ -1,8 +1,9 @@
 package steps;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import pages.ApplicationFormFirstPage;
-import ru.yandex.qatools.allure.annotations.Step;
+
 
 import java.util.HashMap;
 
