@@ -59,7 +59,7 @@
             <version>1.2.4</version>
         </dependency>
 
-        <!-- нужен для того что бы все листнеры отработали. Может снести? -->
+        <!-- вроде нужен для того что бы все листнеры отработали. Может снести? -->
         <dependency>
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
@@ -67,8 +67,10 @@
         </dependency>
     </dependencies>
 
+
+
     <build>
-        <!-- добавил. Не помогло? -->
+        <!-- добавил наугад. Не помогло! -->
         <resources>
             <resource>
                 <directory>src/test/resources</directory>
