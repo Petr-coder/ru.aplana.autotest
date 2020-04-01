@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import steps.BaseSteps;
+import static util.DriverManager.getDriver;
 
 public class ApplicationFormSecondPage extends BasePage {
 
@@ -54,16 +54,16 @@ public class ApplicationFormSecondPage extends BasePage {
     public WebElement continueButton;
 
     public ApplicationFormSecondPage() {
-        PageFactory.initElements(BaseSteps.getDriver(), this);
-        (new WebDriverWait(BaseSteps.getDriver(), 10))
+        PageFactory.initElements(getDriver(), this);
+        (new WebDriverWait(getDriver(), 10))
                 .until(ExpectedConditions.visibilityOf(title));
     }
 
     public void fillField(String  fieldName, String value) {
         switch (fieldName) {
             case "Фамилия /Surname":
-                BaseSteps.getDriver().findElement(By.id("surname_vzr_ins_0")).click();
-                BaseSteps.getDriver().findElement(By.id("surname_vzr_ins_0")).sendKeys(value);
+                getDriver().findElement(By.id("surname_vzr_ins_0")).click();
+                getDriver().findElement(By.id("surname_vzr_ins_0")).sendKeys(value);
                 //fillField(lastNameOfInsured, value);
 
                 break;
@@ -76,12 +76,12 @@ public class ApplicationFormSecondPage extends BasePage {
             case "Фамилия":
                 //fillField(lastNameOfPolicyholder, value);
                 //lastNameOfPolicyholder.sendKeys(Keys.TAB);
-                BaseSteps.getDriver().findElement(By.id("person_lastName")).click();
-                BaseSteps.getDriver().findElement(By.id("person_lastName")).sendKeys(value);
+                getDriver().findElement(By.id("person_lastName")).click();
+                getDriver().findElement(By.id("person_lastName")).sendKeys(value);
                 break;
             case "Имя":
-                BaseSteps.getDriver().findElement(By.id("person_firstName")).click();
-                BaseSteps.getDriver().findElement(By.id("person_firstName")).sendKeys(value);
+                getDriver().findElement(By.id("person_firstName")).click();
+                getDriver().findElement(By.id("person_firstName")).sendKeys(value);
                 break;
             case "Отчество":
                 fillField(middleNameOfPolicyholder, value);
@@ -94,8 +94,8 @@ public class ApplicationFormSecondPage extends BasePage {
             case "passportSeries":
                 //fillField(passportSeries, value);
                 //passportSeries.sendKeys(Keys.TAB);
-                BaseSteps.getDriver().findElement(By.id("passportSeries")).click();
-                BaseSteps.getDriver().findElement(By.id("passportSeries")).sendKeys(value);
+                getDriver().findElement(By.id("passportSeries")).click();
+                getDriver().findElement(By.id("passportSeries")).sendKeys(value);
                 break;
             case "passportNumber":
                 fillField(passportNumber, value);
@@ -106,8 +106,8 @@ public class ApplicationFormSecondPage extends BasePage {
             case "Кем выдан":
                 //fillField(documentIssue, value);
                 //documentIssue.sendKeys(Keys.TAB);
-                BaseSteps.getDriver().findElement(By.id("documentIssue")).click();
-                BaseSteps.getDriver().findElement(By.id("documentIssue")).sendKeys("Кем-то");
+                getDriver().findElement(By.id("documentIssue")).click();
+                getDriver().findElement(By.id("documentIssue")).sendKeys("Кем-то");
                 break;
             default:
                 throw new AssertionError("Поле '" + fieldName + "' не объявлено на странице");
@@ -145,13 +145,13 @@ public class ApplicationFormSecondPage extends BasePage {
 
     public void checkFieldErrorMessage(String errorMessage){
         String xpath = "//*[@class='alert-form alert-form-error']";
-        String actualValue = BaseSteps.getDriver().findElement(By.xpath(xpath)).getText();
+        String actualValue = getDriver().findElement(By.xpath(xpath)).getText();
         Assert.assertTrue(String.format("Получено значение [%s]. Ожидалось [%s]", actualValue, errorMessage),
                 actualValue.contains(errorMessage));
     }
 
     public void waitContinueButton() {
-        Wait<WebDriver> wait = new WebDriverWait(BaseSteps.getDriver(), 5, 250);
+        Wait<WebDriver> wait = new WebDriverWait(getDriver(), 7, 1000);
         wait.until(ExpectedConditions.elementToBeClickable(continueButton)).click();
     }
 

@@ -6,9 +6,9 @@ import org.junit.runner.notification.Failure;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
-import steps.BaseSteps;
+import static util.DriverManager.getDriver;
 
-public class AllureListener extends AllureJunit4 {
+public class AllureReporter extends AllureJunit4 {
 
     @Override
     public void testFailure(Failure failure) throws Exception {
@@ -17,6 +17,7 @@ public class AllureListener extends AllureJunit4 {
     }
     @Attachment(type= "img/png", value = "Скриншот при ошибке")
     public byte [] takeScreenShot(){
-        return ((TakesScreenshot) BaseSteps.getDriver()).getScreenshotAs(OutputType.BYTES);
+
+        return ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES);
     }
 }

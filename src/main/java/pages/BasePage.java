@@ -1,13 +1,13 @@
 package pages;
 
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import steps.BaseSteps;
+
+import static util.DriverManager.getDriver;
 
 public class BasePage {
     public BasePage() {
-        PageFactory.initElements(BaseSteps.getDriver(), this);
+        PageFactory.initElements(getDriver(), this);
     }
 
     public void fillField(WebElement field, String value){

@@ -8,7 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import steps.BaseSteps;
+import static util.DriverManager.getDriver;
 
 public class TravelersInsurancePage extends BasePage {
 
@@ -19,14 +19,13 @@ public class TravelersInsurancePage extends BasePage {
     public WebElement sendAppButton;
 
     public TravelersInsurancePage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-
+        PageFactory.initElements(getDriver(), this);
     }
 
     public void waitSendAppClickable() {
-        Wait<WebDriver> wait = new WebDriverWait(BaseSteps.getDriver(), 5, 250);
+        Wait<WebDriver> wait = new WebDriverWait(getDriver(), 5, 250);
         wait.until(ExpectedConditions.visibilityOf(
-                BaseSteps.getDriver().findElement(By.xpath("//B[@class='kit-button__text'][text()='Оформить онлайн']")))).click();
+                getDriver().findElement(By.xpath("//B[@class='kit-button__text'][text()='Оформить онлайн']")))).click();
     }
 
 
