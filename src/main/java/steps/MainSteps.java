@@ -1,5 +1,5 @@
 package steps;
-import io.qameta.allure.Step;
+import io.cucumber.java.en.When;
 import pages.MainPage;
 
 import static util.DriverManager.getDriver;
@@ -7,12 +7,12 @@ import static util.DriverManager.getDriver;
 
 public class MainSteps  {
 
-    @Step("выбран пункт меню {0}")
+    @When("^Выбран пункт меню \"(.*)\"$")
     public void stepSelectMainMenu(String menuItem) {
         new MainPage(getDriver()).selectMainMenu(menuItem);
     }
 
-    @Step("выбран вид страхования {0}")
+    @When("^Выбран вид страхования \"(.*)\"$")
     public void stepSelectSubMenu(String menuItem) throws InterruptedException {
         new MainPage(getDriver()).selectSubMenu(menuItem);
     }

@@ -1,16 +1,16 @@
 package steps;
 
-import io.qameta.allure.Step;
+import io.cucumber.java.en.When;
 import pages.ApplicationFormFirstPage;
 
 public class ApplicationFormFirstSteps  {
 
-    @Step("выбирается поле {0}")
+    @When("^Выбрана сумма страховой защиты \"(.*)\"$")
     public void stepWaitInsuranceCoverAmount(String menuItem){
         new ApplicationFormFirstPage().waitInsuranceCoverAmount(menuItem);
     }
 
-    @Step("выбирается поле {0}")
+    @When("^Выполнено нажатие на кнопку \"(.*)\"$")
     public void stepWaitMakeOnlineApplication(String menuItem) {
         new ApplicationFormFirstPage().waitMakeOnlineApplication(menuItem);
     }

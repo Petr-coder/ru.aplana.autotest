@@ -100,12 +100,6 @@
                             <value>${project.build.directory}/allure-results</value>
                         </property>
                     </systemProperties>
-                    <properties>
-                        <property>
-                            <name>listener</name>
-                            <value>util.AllureReporter</value>
-                        </property>
-                    </properties>
                 </configuration>
             </plugin>
 

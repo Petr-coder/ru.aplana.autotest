@@ -10,6 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import static org.junit.Assert.assertTrue;
 import static util.DriverManager.getDriver;
 
 public class ApplicationFormSecondPage extends BasePage {
@@ -141,6 +143,12 @@ public class ApplicationFormSecondPage extends BasePage {
                 return documentIssue.getAttribute("value");
         }
         throw new AssertionError("Поле не объявлено на странице");
+    }
+
+    public void checkFillField(String field, String value) {
+        String actual = new ApplicationFormSecondPage().getFillField(field);
+        assertTrue(String.format("Значение поля [%s] равно [%s]. Ожидалось - [%s]", field, actual, value),
+                actual.equals(value));
     }
 
     public void checkFieldErrorMessage(String errorMessage){

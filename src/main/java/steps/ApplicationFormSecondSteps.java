@@ -1,42 +1,39 @@
 package steps;
 
-import io.qameta.allure.Step;
+import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import pages.ApplicationFormSecondPage;
 
-import static org.junit.Assert.assertTrue;
+import java.util.Map;
 
 
 public class ApplicationFormSecondSteps {
 
-    @Step("поле {0} заполняется значением {1}")
-    public void fillField(String fieldName, String value) {
-        new ApplicationFormSecondPage().fillField(fieldName, value);
+    @When("^Заполняются поля:$")
+    public void stepFillFields(DataTable fields) {
+        Map<String, String> dataMap = fields.asMap(String.class, String.class);
+        dataMap.forEach(
+                (key, value) -> new ApplicationFormSecondPage().fillField(key, value));
     }
 
-    @Step("поле {0} заполнено значением {1}")
-    public void checkFillField(String field, String value) {
-        String actual = new ApplicationFormSecondPage().getFillField(field);
-        assertTrue(String.format("Значение поля [%s] равно [%s]. Ожидалось - [%s]", field, actual, value),
-                actual.equals(value));
+
+
+    @Then("^Проверяются поля$")
+    public  void stepCheckFileFields(DataTable fields){
+        Map<String, String> dataMap = fields.asMap(String.class, String.class);
+        dataMap.forEach(
+                (key, value) -> new ApplicationFormSecondPage().checkFillField(key,value));
     }
 
-    @Step("в поле {0} присутствует сообщение об ошибке {1}")
+    @When("^Выполнено нажатие на кнопку Продолжить$")
+    public void waitContinueButtonClick() {
+        new ApplicationFormSecondPage().waitContinueButton();
+    }
+
+    @Then("^Выполнена проверка появления сообщения \"(.*)\"$")
     public void checkErrorMessageField(String value) {
         new ApplicationFormSecondPage().checkFieldErrorMessage(value);
     }
 
-//    @Step("заполняются поля")
-//    public void fillFields(HashMap<String, String> fields) {
-//        fields.forEach((k, v) -> fillField(k, v));
-//    }
-
-//    @Step("поля заполнены верно")
-//    public void checkFillFields(HashMap<String, String> fields) {
-//        fields.forEach((k, v) -> checkFillField(k, v));
-//    }
-
-    @Step("Выполнено нажатие на кнопку Продолжить")
-    public void waitContinueButtonClick() {
-        new ApplicationFormSecondPage().waitContinueButton();
-    }
 }
