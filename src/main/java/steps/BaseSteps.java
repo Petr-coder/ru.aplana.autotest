@@ -1,7 +1,8 @@
 package steps;
 
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
+
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import util.TestProperties;
 
 import java.util.Properties;
@@ -15,7 +16,7 @@ public class BaseSteps {
     public static Properties properties = TestProperties.getInstance().getProperties();
 
     @Before
-    public void startScenario() {
+    public static void startScenario() {
         getDriver().get("http://www.sberbank.ru/ru/person");
         getDriver().manage().window().maximize();
         getDriver().manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);

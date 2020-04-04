@@ -6,7 +6,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = {"src/test/resources/InsuranceTest.feature"},
         glue = {"steps"},
-        plugin = {"ru.aplana.autotest.util.AllureReporter",})
+        tags = {"@insurance"},
+        plugin = {"io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm"})
 
 public class CucumberRunner{
 }

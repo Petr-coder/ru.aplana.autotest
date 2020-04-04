@@ -3,8 +3,6 @@ package steps;
 import io.qameta.allure.Step;
 import pages.ApplicationFormSecondPage;
 
-import java.util.HashMap;
-
 import static org.junit.Assert.assertTrue;
 
 
@@ -27,18 +25,18 @@ public class ApplicationFormSecondSteps {
         new ApplicationFormSecondPage().checkFieldErrorMessage(value);
     }
 
-    @Step("заполняются поля")
-    public void fillFields(HashMap<String, String> fields) {
-        fields.forEach((k, v) -> fillField(k, v));
-    }
+//    @Step("заполняются поля")
+//    public void fillFields(HashMap<String, String> fields) {
+//        fields.forEach((k, v) -> fillField(k, v));
+//    }
 
-    @Step("поля заполнены верно")
-    public void checkFillFields(HashMap<String, String> fields) {
-        fields.forEach((k, v) -> checkFillField(k, v));
-    }
+//    @Step("поля заполнены верно")
+//    public void checkFillFields(HashMap<String, String> fields) {
+//        fields.forEach((k, v) -> checkFillField(k, v));
+//    }
 
-    @Step("выбирается поле")
-    public void stepWaitContinueButton() {
+    @Step("Выполнено нажатие на кнопку Продолжить")
+    public void waitContinueButtonClick() {
         new ApplicationFormSecondPage().waitContinueButton();
     }
 }

@@ -31,14 +31,14 @@ public class ApplicationFormFirstPage extends BasePage {
     public void waitInsuranceCoverAmount(String field) {
         Wait<WebDriver> wait = new WebDriverWait(getDriver(), 5, 250);
         wait.until(ExpectedConditions.elementToBeClickable(
-                getDriver().findElement(By.xpath("//*[text()='"+field+"']")))).click();
+                insuranceCoverAmount.findElement(By.xpath("//*[text()='"+field+"']")))).click();
+        System.out.println("проверка");
     }
 
     public void waitMakeOnlineApplication(String field) {
         Wait<WebDriver> wait = new WebDriverWait(getDriver(), 5, 250);
         wait.until(ExpectedConditions.elementToBeClickable(
                 getDriver().findElement(By.xpath("//BUTTON[@class='btn btn-primary btn-large'][text()='"+field+"']")))).click();
+        System.out.println("проверка222");
     }
-
-
 }

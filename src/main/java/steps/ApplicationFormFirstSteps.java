@@ -1,22 +1,18 @@
 package steps;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.WebElement;
 import pages.ApplicationFormFirstPage;
 
-
-import java.util.HashMap;
-
-public class ApplicationFormFirstSteps extends BaseSteps {
+public class ApplicationFormFirstSteps  {
 
     @Step("выбирается поле {0}")
-    public void stepWaitInsuranceCoverAmount(String field){
-        new ApplicationFormFirstPage().waitInsuranceCoverAmount(field);
+    public void stepWaitInsuranceCoverAmount(String menuItem){
+        new ApplicationFormFirstPage().waitInsuranceCoverAmount(menuItem);
     }
 
     @Step("выбирается поле {0}")
-    public void stepWaitMakeOnlineApplication(String field){
-        new ApplicationFormFirstPage().waitMakeOnlineApplication(field);
+    public void stepWaitMakeOnlineApplication(String menuItem) {
+        new ApplicationFormFirstPage().waitMakeOnlineApplication(menuItem);
     }
 
 }

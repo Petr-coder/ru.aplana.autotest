@@ -1,7 +1,11 @@
 package steps;
 
-import cucumber.api.DataTable;
-import cucumber.api.java.en.When;
+
+import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+import java.util.Map;
 
 public class ScenarioSteps {
 
@@ -21,8 +25,8 @@ public class ScenarioSteps {
         mainSteps.stepSelectSubMenu(menuItem);
     }
 
-    @When("^Выполнено нажатие на кнопку - Оформить онлайн")
-    public void stepSendAppButton(String menuItem) {
+    @When("^Выполнено нажатие на кнопку Оформить онлайн$")
+    public void stepSendAppButton() {
         travelersInsuranceSteps.stepSendAppButton();
     }
 
@@ -31,15 +35,32 @@ public class ScenarioSteps {
         applicationFormFirstSteps.stepWaitInsuranceCoverAmount(menuItem);
     }
 
-    @When("^Выполнено нажатие на кнопку - Оформить")
-    public void stepWaitMakeOnlineApplication(String menuItem) {
+    @When("^Выполнено нажатие на кнопку \"(.*)\"$")
+    public void stepWaitMakeOnlineApplication1(String menuItem) {
         applicationFormFirstSteps.stepWaitMakeOnlineApplication(menuItem);
     }
 
-    @When("Заполняются поля:")
+    @When("^Заполняются поля:$")
     public void stepFillFields(DataTable fields) {
-        fields.asMap(String.class, String.class).forEach(
+        Map<String, String> dataMap = fields.asMap(String.class, String.class);
+        dataMap.forEach(
                 (key, value) -> applicationFormSecondSteps.fillField(key, value));
     }
 
+    @Then("^Проверяются поля$")
+    public  void stepCheckFileFields(DataTable fields){
+        Map<String, String> dataMap = fields.asMap(String.class, String.class);
+        dataMap.forEach(
+                (key, value) -> applicationFormSecondSteps.checkFillField(key,value));
+    }
+
+    @When("^Выполнено нажатие на кнопку Продолжить")
+    public void stepWaitContinueButton(){
+        applicationFormSecondSteps.waitContinueButtonClick();
+    }
+
+    @Then("^Выполнена проверка появления сообщения \"(.*)\"$")
+            public void stepCheckErrorMessageField(String value) {
+        applicationFormSecondSteps.checkErrorMessageField(value);
+    }
 }

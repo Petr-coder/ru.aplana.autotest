@@ -5,7 +5,7 @@ import pages.MainPage;
 import static util.DriverManager.getDriver;
 
 
-public class MainSteps extends BaseSteps {
+public class MainSteps  {
 
     @Step("выбран пункт меню {0}")
     public void stepSelectMainMenu(String menuItem) {
